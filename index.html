@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8" />
+<title>メモ超</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="http://code.angularjs.org/1.5.7/angular.min.js"></script>
+<script src="app.js"></script>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body ng-controller="MyController">
+<header>
+<h1>メモ超</h1>
+</header>
+
+<main>
+<section id="add">
+<h2>追加</h2>
+<p>タイトル：<br /><input type="text" name="title" ng-model="add_title" /></p>
+<p>内容：<br /><textarea name="content" ng-model="add_content"></textarea></p>
+<p><button type="button" ng-click="add()">追加</button></p>
+<p ng-if="result">{{result}}</p>
+</section>
+
+<section id="list">
+<h2>一覧（全{{count}}件）</h2>
+<ul>
+<li ng-repeat="note in notes | orderBy: '-id'"><a href="#" ng-click="show(note.id)">{{note.title}}</a><button type="button" ng-click="del(note.id)">削除</button></li>
+</ul>
+<pre ng-if="result2">{{result2}}</pre>
+</section>
+
+<section id="detail" ng-if="detail">
+<h2>{{detail.title}}</h2>
+<p>{{detail.content}}</p>
+</section>
+
+</main>
+</body>
+</html>
